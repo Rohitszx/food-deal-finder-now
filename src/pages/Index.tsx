@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Search, Burger, Pizza, Salad, Heart } from 'lucide-react';
+import { Search, Utensils, Pizza, Salad, Heart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import FeaturedDeals from '@/components/home/FeaturedDeals';
@@ -20,7 +20,7 @@ const HomePage = () => {
   };
 
   const categories = [
-    { id: 1, name: "Burgers", icon: <Burger className="h-6 w-6" /> },
+    { id: 1, name: "Burgers", icon: <Utensils className="h-6 w-6" /> },
     { id: 2, name: "Pizza", icon: <Pizza className="h-6 w-6" /> },
     { id: 3, name: "Salads", icon: <Salad className="h-6 w-6" /> },
     { id: 4, name: "Vegan", icon: <Heart className="h-6 w-6" /> },
