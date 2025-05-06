@@ -2,6 +2,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { cn } from '@/lib/utils';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 type Category = {
   id: number;
@@ -15,6 +16,7 @@ interface CategorySliderProps {
 
 const CategorySlider = ({ categories }: CategorySliderProps) => {
   const navigate = useNavigate();
+  const isMobile = useIsMobile();
 
   const handleCategoryClick = (category: string) => {
     navigate(`/results?category=${encodeURIComponent(category.toLowerCase())}`);
@@ -27,15 +29,19 @@ const CategorySlider = ({ categories }: CategorySliderProps) => {
           key={category.id}
           onClick={() => handleCategoryClick(category.name)}
           className={cn(
-            "flex flex-col items-center justify-center min-w-[80px] p-3 rounded-xl",
-            "bg-white border border-border shadow-sm transition-all hover:shadow",
+            "flex flex-col items-center justify-center",
+            isMobile ? "min-w-[70px] p-2" : "min-w-[80px] p-3",
+            "rounded-xl bg-white border border-border shadow-sm transition-all hover:shadow",
             "active:scale-95"
           )}
         >
-          <div className="w-12 h-12 flex items-center justify-center rounded-full bg-soft-peach text-tomato mb-2">
+          <div className={cn(
+            "flex items-center justify-center rounded-full bg-soft-peach text-tomato mb-1 md:mb-2",
+            isMobile ? "w-10 h-10" : "w-12 h-12"
+          )}>
             {category.icon}
           </div>
-          <span className="text-sm font-medium">{category.name}</span>
+          <span className="text-xs md:text-sm font-medium">{category.name}</span>
         </button>
       ))}
     </div>

@@ -3,9 +3,11 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Card, CardContent } from '@/components/ui/card';
 import { Star } from 'lucide-react';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const FeaturedDeals = () => {
   const navigate = useNavigate();
+  const isMobile = useIsMobile();
   
   const deals = [
     {
@@ -45,7 +47,7 @@ const FeaturedDeals = () => {
   };
 
   return (
-    <div className="grid grid-cols-1 gap-4">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
       {deals.map((deal) => (
         <Card 
           key={deal.id} 
@@ -53,7 +55,7 @@ const FeaturedDeals = () => {
           onClick={() => handleDealClick(deal.id)}
         >
           <CardContent className="p-0">
-            <div className="flex h-28 sm:h-32">
+            <div className={`flex ${isMobile ? 'h-28' : 'h-32'}`}>
               <div className="relative w-32 h-full">
                 <img 
                   src={deal.image} 
